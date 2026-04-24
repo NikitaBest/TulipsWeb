@@ -122,12 +122,6 @@ export const ChatPage = () => {
                           : styles.messageAssistant
                     }
                   >
-                    {message.text ? (
-                      <div
-                        className={styles.messageText}
-                        dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(message.text) }}
-                      />
-                    ) : null}
                     {message.imageUrls
                       .filter((imageUrl) => !failedImageUrls.includes(imageUrl))
                       .map((imageUrl) => (
@@ -142,6 +136,12 @@ export const ChatPage = () => {
                           }}
                         />
                       ))}
+                    {message.text ? (
+                      <div
+                        className={styles.messageText}
+                        dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(message.text) }}
+                      />
+                    ) : null}
                     {message.status === "queued" || message.status === "processing" ? (
                       <span className={styles.messageStatus}>AI готовит ответ...</span>
                     ) : null}
