@@ -15,6 +15,7 @@ body {
   font-family: Inter, system-ui, -apple-system, sans-serif;
   background: var(--bg);
   color: var(--text);
+  -webkit-text-size-adjust: 100%;
 }
 
 a {
