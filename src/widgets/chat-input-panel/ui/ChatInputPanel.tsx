@@ -13,9 +13,10 @@ type ChatInputPanelProps = {
   onSubmit?: (payload: { text: string; images: File[] }) => Promise<void> | void;
   disabled?: boolean;
   isSending?: boolean;
+  hint?: string;
 };
 
-export const ChatInputPanel = ({ onSubmit, disabled = false, isSending = false }: ChatInputPanelProps) => {
+export const ChatInputPanel = ({ onSubmit, disabled = false, isSending = false, hint }: ChatInputPanelProps) => {
   const [pendingImages, setPendingImages] = useState<PendingImage[]>([]);
   const [text, setText] = useState("");
   const fileInputRef = useRef<HTMLInputElement | null>(null);
@@ -137,13 +138,14 @@ export const ChatInputPanel = ({ onSubmit, disabled = false, isSending = false }
 
         <textarea
           className={styles.input}
-          placeholder="Начните вводить вопрос..."
+          placeholder={disabled ? "Ассистент готовит ответ..." : "Начните вводить вопрос..."}
           rows={1}
           onInput={handleInput}
           value={text}
           onChange={(event) => setText(event.target.value)}
           disabled={disabled || isSending}
         />
+        {hint ? <p className={styles.hint}>{hint}</p> : null}
       <div className={styles.footer}>
         <button
           type="button"

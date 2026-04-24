@@ -18,6 +18,8 @@ export const ChatPage = () => {
   const queryClient = useQueryClient();
   const messagesEndRef = useRef<HTMLDivElement | null>(null);
   const [pendingMessageId, setPendingMessageId] = useState<string | null>(null);
+  const [chatError, setChatError] = useState<string | null>(null);
+  const [failedImageUrls, setFailedImageUrls] = useState<string[]>([]);
 
   const { data: messages = [] } = useQuery<ChatMessage[]>({
     queryKey: ["messages", selectedChatId],
@@ -53,6 +55,7 @@ export const ChatPage = () => {
         images: payload.images,
       }),
     onSuccess: async (result) => {
+      setChatError(null);
       setPendingMessageId(result.messageId);
       await queryClient.invalidateQueries({ queryKey: ["messages", selectedChatId] });
       await queryClient.invalidateQueries({ queryKey: ["chats"] });
@@ -64,6 +67,7 @@ export const ChatPage = () => {
       await chatsApi.replayFailedJob(payload.jobId);
     },
     onSuccess: async () => {
+      setChatError(null);
       await queryClient.invalidateQueries({ queryKey: ["messages", selectedChatId] });
       await queryClient.invalidateQueries({ queryKey: ["chats"] });
     },
@@ -72,6 +76,7 @@ export const ChatPage = () => {
   const hasMessages = messages.length > 0;
   const hasProcessing = messages.some((message) => message.status === "queued" || message.status === "processing");
   const isAwaitingAssistant = Boolean(pendingMessageId) && messageWithNext.length <= 1;
+  const isInputLocked = hasProcessing || isAwaitingAssistant || sendMessageMutation.isPending;
 
   useEffect(() => {
     if (!pendingMessageId || messageWithNext.length <= 1) {
@@ -123,9 +128,20 @@ export const ChatPage = () => {
                         dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(message.text) }}
                       />
                     ) : null}
-                    {message.imageUrls.map((imageUrl) => (
-                      <img key={imageUrl} className={styles.messageImage} src={imageUrl} alt="Вложение сообщения" />
-                    ))}
+                    {message.imageUrls
+                      .filter((imageUrl) => !failedImageUrls.includes(imageUrl))
+                      .map((imageUrl) => (
+                        <img
+                          key={imageUrl}
+                          className={styles.messageImage}
+                          src={imageUrl}
+                          alt="Вложение сообщения"
+                          loading="lazy"
+                          onError={() => {
+                            setFailedImageUrls((prev) => (prev.includes(imageUrl) ? prev : [...prev, imageUrl]));
+                          }}
+                        />
+                      ))}
                     {message.status === "queued" || message.status === "processing" ? (
                       <span className={styles.messageStatus}>AI готовит ответ...</span>
                     ) : null}
@@ -171,17 +187,23 @@ export const ChatPage = () => {
             )}
             <div className={styles.inputDock}>
               <ChatInputPanel
-                disabled={false}
+                disabled={isInputLocked}
                 isSending={sendMessageMutation.isPending}
+                hint={isInputLocked ? "Пожалуйста, дождитесь ответа ассистента. Пока отправка недоступна." : undefined}
                 onSubmit={async (payload) => {
-                  const chatId = await ensureChatId();
-                  await sendMessageMutation.mutateAsync({
-                    chatId,
-                    text: payload.text,
-                    images: payload.images,
-                  });
+                  try {
+                    const chatId = await ensureChatId();
+                    await sendMessageMutation.mutateAsync({
+                      chatId,
+                      text: payload.text,
+                      images: payload.images,
+                    });
+                  } catch {
+                    setChatError("Не удалось отправить сообщение. Проверьте сеть и попробуйте снова.");
+                  }
                 }}
               />
+              {chatError ? <p className={styles.chatError}>{chatError}</p> : null}
             </div>
           </section>
         </div>

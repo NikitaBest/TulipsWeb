@@ -156,6 +156,13 @@
   cursor: not-allowed;
 }
 
+.hint {
+  margin: 6px 2px 0;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.35;
+}
+
 @media (max-width: 520px) {
   .panel {
     border-radius: 18px;
