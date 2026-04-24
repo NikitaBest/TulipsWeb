@@ -1,0 +1,125 @@
+.panel {
+  width: 100%;
+  border-radius: 18px;
+  background: var(--surface);
+  color: var(--text);
+  padding: 14px;
+  overflow: auto;
+  border: 1px solid var(--border-soft);
+  box-shadow: 0 8px 24px -18px rgba(17, 24, 39, 0.45);
+}
+
+.panelMobile {
+  width: min(320px, 84vw);
+  height: 100svh;
+  border-radius: 0;
+  border-top: 0;
+  border-bottom: 0;
+  border-left: 0;
+  box-shadow: 20px 0 40px -28px rgba(17, 24, 39, 0.5);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.title {
+  margin: 0;
+  font-size: 18px;
+}
+
+.closeButton {
+  width: 34px;
+  height: 34px;
+  border: 0;
+  border-radius: 50%;
+  background: #ffffff;
+  color: #111827;
+  cursor: pointer;
+  box-shadow:
+    0 10px 16px -14px rgba(17, 24, 39, 0.4),
+    inset 0 0 0 1px rgba(17, 24, 39, 0.08);
+}
+
+.newChatButton {
+  width: 100%;
+  border: 0;
+  border-radius: 12px;
+  background: var(--surface-soft);
+  padding: 10px 12px;
+  color: var(--text);
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+  box-shadow: inset 0 0 0 1px var(--border-soft);
+}
+
+.sections {
+  margin-top: 12px;
+  display: grid;
+  gap: 12px;
+}
+
+.emptyState {
+  margin: 0;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.section {
+  border-top: 1px solid rgba(15, 23, 42, 0.08);
+  padding-top: 10px;
+}
+
+.sectionTitle {
+  margin: 0 0 8px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 6px;
+}
+
+.item {
+  width: 100%;
+  border: 0;
+  border-radius: 12px;
+  background: transparent;
+  padding: 10px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  cursor: pointer;
+  text-align: left;
+}
+
+.item:hover {
+  background: rgba(99, 207, 176, 0.12);
+}
+
+.itemActive {
+  background: rgba(99, 207, 176, 0.18);
+  box-shadow: inset 0 0 0 1px rgba(46, 168, 132, 0.35);
+}
+
+.itemTitle {
+  font-size: 14px;
+  color: var(--text);
+}
+
+.itemMeta {
+  color: var(--muted);
+  font-size: 12px;
+  white-space: nowrap;
+}

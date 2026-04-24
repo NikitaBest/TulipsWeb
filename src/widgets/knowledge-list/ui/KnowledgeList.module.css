@@ -1,0 +1,42 @@
+.grid {
+  display: grid;
+  gap: 12px;
+}
+
+.item {
+  display: grid;
+  gap: 10px;
+  border-radius: 16px;
+}
+
+.meta {
+  display: inline-flex;
+  align-items: center;
+  width: max-content;
+  border-radius: 999px;
+  padding: 4px 10px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #2c7d66;
+  background: rgba(111, 210, 180, 0.2);
+}
+
+.title {
+  margin: 0;
+  font-size: 19px;
+  line-height: 1.25;
+}
+
+.description {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 360;
+  line-height: 1.4;
+}
+
+.link {
+  color: #2f9f83;
+  font-size: 14px;
+  font-weight: 600;
+}
