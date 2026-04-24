@@ -7,6 +7,7 @@
   max-width: 680px;
   margin: 0 auto;
   width: 100%;
+  min-width: 0;
   min-height: calc(100svh - 132px);
   display: flex;
   flex-direction: column;
@@ -49,12 +50,14 @@
   display: grid;
   gap: 10px;
   margin: 12px 0 auto;
+  min-width: 0;
   overflow: visible;
 }
 
 .messageUser,
 .messageAssistant,
 .messageSystem {
+  max-width: 100%;
   border-radius: 14px;
   padding: 10px 12px;
   border: 1px solid var(--border-soft);
@@ -78,6 +81,8 @@
 .messageText {
   margin: 0;
   white-space: pre-wrap;
+  word-break: break-word;
+  overflow-wrap: anywhere;
   line-height: 1.4;
   font-size: 14px;
 }
@@ -189,6 +194,7 @@
 .messageImage {
   margin-top: 8px;
   width: min(240px, 60vw);
+  max-width: 100%;
   border-radius: 10px;
   display: block;
 }
@@ -246,6 +252,12 @@
     rgba(248, 251, 250, 0.96) 65%,
     rgba(248, 251, 250, 0)
   );
+}
+
+@media (max-width: 899px) {
+  .inputDock {
+    padding-inline: 12px;
+  }
 }
 
 @media (min-width: 900px) {

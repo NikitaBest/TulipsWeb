@@ -102,6 +102,7 @@
   gap: 10px;
   cursor: pointer;
   text-align: left;
+  min-width: 0;
 }
 
 .item:hover {
@@ -114,8 +115,13 @@
 }
 
 .itemTitle {
+  min-width: 0;
+  flex: 1;
   font-size: 14px;
   color: var(--text);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .itemMeta {

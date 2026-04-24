@@ -47,12 +47,17 @@
 
 .title {
   justify-self: center;
+  min-width: 0;
+  max-width: 100%;
   font-size: 15px;
   font-weight: 600;
   background: var(--surface);
   border-radius: 12px;
   padding: 11px 16px;
   box-shadow: 0 8px 20px -14px rgba(17, 24, 39, 0.45);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .newChatButton {
