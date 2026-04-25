@@ -197,6 +197,7 @@
   max-width: 100%;
   border-radius: 10px;
   display: block;
+  cursor: zoom-in;
 }
 
 .welcomeIcon {
@@ -261,6 +262,48 @@
   font-size: 12px;
   line-height: 1.35;
   text-align: center;
+}
+
+.imagePreviewOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  background: rgba(15, 23, 42, 0.74);
+  backdrop-filter: blur(2px);
+  display: grid;
+  place-items: center;
+  padding: 20px;
+}
+
+.imagePreviewDialog {
+  position: relative;
+  max-width: min(1100px, 92vw);
+  max-height: 90vh;
+}
+
+.imagePreview {
+  display: block;
+  max-width: 100%;
+  max-height: 90vh;
+  object-fit: contain;
+  border-radius: 14px;
+  box-shadow: 0 20px 48px -20px rgba(15, 23, 42, 0.8);
+}
+
+.imagePreviewClose {
+  position: absolute;
+  top: -14px;
+  right: -14px;
+  width: 34px;
+  height: 34px;
+  border: 0;
+  border-radius: 50%;
+  background: #ffffff;
+  color: #0f172a;
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: 0 10px 24px -16px rgba(15, 23, 42, 0.7);
 }
 
 @media (max-width: 899px) {

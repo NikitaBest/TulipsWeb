@@ -20,6 +20,7 @@ export const ChatPage = () => {
   const [pendingMessageId, setPendingMessageId] = useState<string | null>(null);
   const [chatError, setChatError] = useState<string | null>(null);
   const [failedImageUrls, setFailedImageUrls] = useState<string[]>([]);
+  const [previewImageUrl, setPreviewImageUrl] = useState<string | null>(null);
 
   const { data: messages = [] } = useQuery<ChatMessage[]>({
     queryKey: ["messages", selectedChatId],
@@ -103,6 +104,21 @@ export const ChatPage = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth", block: "end" });
   }, [messages.length]);
 
+  useEffect(() => {
+    if (!previewImageUrl) {
+      return;
+    }
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setPreviewImageUrl(null);
+      }
+    };
+
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [previewImageUrl]);
+
   return (
     <ChatLayout>
       <PageContainer>
@@ -130,6 +146,7 @@ export const ChatPage = () => {
                           src={imageUrl}
                           alt="Вложение сообщения"
                           loading="lazy"
+                          onClick={() => setPreviewImageUrl(imageUrl)}
                           onError={() => {
                             setFailedImageUrls((prev) => (prev.includes(imageUrl) ? prev : [...prev, imageUrl]));
                           }}
@@ -220,6 +237,26 @@ export const ChatPage = () => {
               mobile
               onClose={() => setHistoryOpen(false)}
             />
+          </div>
+        </div>
+      ) : null}
+
+      {previewImageUrl ? (
+        <div
+          className={styles.imagePreviewOverlay}
+          role="presentation"
+          onClick={() => setPreviewImageUrl(null)}
+        >
+          <div className={styles.imagePreviewDialog} role="presentation" onClick={(event) => event.stopPropagation()}>
+            <button
+              type="button"
+              className={styles.imagePreviewClose}
+              aria-label="Закрыть просмотр изображения"
+              onClick={() => setPreviewImageUrl(null)}
+            >
+              ✕
+            </button>
+            <img className={styles.imagePreview} src={previewImageUrl} alt="Увеличенное изображение" />
           </div>
         </div>
       ) : null}
