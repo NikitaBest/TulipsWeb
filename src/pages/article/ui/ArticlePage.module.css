@@ -40,3 +40,25 @@
   line-height: 1.55;
   white-space: pre-line;
 }
+
+@media (min-width: 900px) {
+  .page {
+    max-width: 920px;
+    margin: 0 auto;
+    gap: 16px;
+  }
+
+  .article {
+    gap: 12px;
+  }
+
+  .title {
+    font-size: 34px;
+  }
+
+  .description,
+  .content {
+    font-size: 17px;
+    line-height: 1.6;
+  }
+}

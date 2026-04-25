@@ -47,6 +47,29 @@
   .hero {
     min-height: calc(100svh - 64px);
   }
+
+  .main {
+    gap: 18px;
+  }
+
+  .title {
+    font-size: 44px;
+    line-height: 1.05;
+  }
+
+  .description {
+    font-size: 18px;
+    line-height: 1.45;
+    max-width: 760px;
+  }
+
+  .image {
+    width: min(420px, 34vw);
+  }
+
+  .note {
+    font-size: 13px;
+  }
 }
 
 @media (max-width: 899px) {

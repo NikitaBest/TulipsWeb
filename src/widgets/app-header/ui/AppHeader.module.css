@@ -71,7 +71,7 @@
 
 @media (min-width: 900px) {
   .header {
-    max-width: 960px;
+    max-width: 1240px;
     margin: 0 auto 16px;
     padding-inline: 16px;
   }

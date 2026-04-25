@@ -20,3 +20,19 @@
   font-size: 15px;
   font-weight: 350;
 }
+
+@media (min-width: 900px) {
+  .page {
+    gap: 18px;
+  }
+
+  .title {
+    font-size: 38px;
+  }
+
+  .subtitle {
+    max-width: 760px;
+    font-size: 17px;
+    line-height: 1.45;
+  }
+}

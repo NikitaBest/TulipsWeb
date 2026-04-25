@@ -270,31 +270,48 @@
 }
 
 @media (min-width: 900px) {
-  .grid {
-    grid-template-columns: 280px 1fr;
-  }
-
-  .historyDesktop {
-    display: block;
-  }
-
   .historyOverlay {
-    display: none;
+    background: linear-gradient(
+      to right,
+      rgba(15, 23, 42, 0.32) 0%,
+      rgba(15, 23, 42, 0.2) 45%,
+      rgba(15, 23, 42, 0.12) 100%
+    );
   }
 
   .main {
+    max-width: 860px;
     min-height: calc(100svh - 148px);
     padding-bottom: 140px;
   }
 
+  .messages {
+    gap: 12px;
+  }
+
+  .messageUser,
+  .messageAssistant {
+    max-width: 78%;
+  }
+
   .inputDock {
-    max-width: 680px;
+    max-width: 860px;
     margin: 0 auto;
     left: 50%;
     right: auto;
     transform: translateX(-50%);
     width: 100%;
     padding-inline: 0;
+  }
+}
+
+@media (min-width: 1280px) {
+  .main {
+    max-width: 900px;
+  }
+
+  .inputDock {
+    max-width: 900px;
   }
 }
 

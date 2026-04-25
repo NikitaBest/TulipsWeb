@@ -107,7 +107,6 @@ export const ChatPage = () => {
     <ChatLayout>
       <PageContainer>
         <div className={styles.grid}>
-          <ChatHistorySidebar className={styles.historyDesktop} />
           <section className={styles.main}>
             {hasMessages ? (
               <section className={styles.messages}>
