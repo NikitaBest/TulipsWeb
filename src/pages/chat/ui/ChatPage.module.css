@@ -257,7 +257,7 @@
 
 .chatError {
   margin: 8px auto 0;
-  width: min(560px, 100%);
+  width: 100%;
   color: #b42318;
   font-size: 12px;
   line-height: 1.35;
