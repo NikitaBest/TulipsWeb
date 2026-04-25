@@ -11,7 +11,7 @@ export const ArticlePage = () => {
   const { id } = useParams();
   const { data: article } = useQuery({
     queryKey: ["knowledge-article", id],
-    queryFn: () => knowledgeApi.getArticleById(),
+    queryFn: () => knowledgeApi.getArticleById(id as string),
     enabled: Boolean(id),
   });
 
