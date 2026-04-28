@@ -335,8 +335,8 @@
 
 .imagePreviewClose {
   position: absolute;
-  top: -14px;
-  right: -14px;
+  top: 8px;
+  right: 8px;
   width: 34px;
   height: 34px;
   border: 0;
@@ -347,6 +347,13 @@
   line-height: 1;
   cursor: pointer;
   box-shadow: 0 10px 24px -16px rgba(15, 23, 42, 0.7);
+}
+
+@media (min-width: 900px) {
+  .imagePreviewClose {
+    top: 10px;
+    right: 10px;
+  }
 }
 
 @media (max-width: 899px) {

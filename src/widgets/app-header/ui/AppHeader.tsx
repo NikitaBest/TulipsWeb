@@ -40,49 +40,51 @@ export const AppHeader = ({ title, mode = "back", onMenuClick, inContainer = tru
         {title}
       </Link>
 
-      <a
-        className={styles.supportButton}
-        href="https://t.me/bazhanov_vladimir"
-        target="_blank"
-        rel="noreferrer"
-        aria-label="Написать в поддержку в Telegram"
-        title="Поддержка"
-      >
-        <svg viewBox="0 0 24 24" aria-hidden="true" className={styles.supportIcon}>
-          <path
-            d="M21.3 4.6c.6-.2 1.2.3 1 .9l-3.1 14.6a1 1 0 0 1-1.4.7l-4.8-2.2-2.6 2.4a1 1 0 0 1-1.7-.6l-.2-4.2L18.6 8a.6.6 0 0 0-.7-1L5.1 12l-3.8-1.6a1 1 0 0 1 .1-1.9z"
-            fill="currentColor"
-          />
-        </svg>
-      </a>
+      <div className={styles.rightActions}>
+        <a
+          className={styles.supportButton}
+          href="https://t.me/bazhanov_vladimir"
+          target="_blank"
+          rel="noreferrer"
+          aria-label="Написать в поддержку в Telegram"
+          title="Поддержка"
+        >
+          <svg viewBox="0 0 24 24" aria-hidden="true" className={styles.supportIcon}>
+            <path
+              d="M21.3 4.6c.6-.2 1.2.3 1 .9l-3.1 14.6a1 1 0 0 1-1.4.7l-4.8-2.2-2.6 2.4a1 1 0 0 1-1.7-.6l-.2-4.2L18.6 8a.6.6 0 0 0-.7-1L5.1 12l-3.8-1.6a1 1 0 0 1 .1-1.9z"
+              fill="currentColor"
+            />
+          </svg>
+        </a>
 
-      <button
-        type="button"
-        className={classNames(styles.sideButton, styles.newChatButton)}
-        aria-label="Создать новый чат"
-        onClick={() => {
-          setSelectedChatId(null);
-          navigate(routes.chat);
-        }}
-      >
-        <svg viewBox="0 0 24 24" aria-hidden="true" className={styles.newChatIcon}>
-          <path
-            d="M6.1 5.9h11.8a2.6 2.6 0 0 1 2.6 2.6v7.4a2.6 2.6 0 0 1-2.6 2.6h-7l-3.5 2.7c-.5.3-1 0-1-.5v-2.2a2.6 2.6 0 0 1-2-2.6V8.5a2.6 2.6 0 0 1 2.7-2.6z"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-          <path
-            d="M12.1 9.4v5.2M9.5 12h5.2"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2.3"
-            strokeLinecap="round"
-          />
-        </svg>
-      </button>
+        <button
+          type="button"
+          className={classNames(styles.sideButton, styles.newChatButton)}
+          aria-label="Создать новый чат"
+          onClick={() => {
+            setSelectedChatId(null);
+            navigate(routes.chat);
+          }}
+        >
+          <svg viewBox="0 0 24 24" aria-hidden="true" className={styles.newChatIcon}>
+            <path
+              d="M6.1 5.9h11.8a2.6 2.6 0 0 1 2.6 2.6v7.4a2.6 2.6 0 0 1-2.6 2.6h-7l-3.5 2.7c-.5.3-1 0-1-.5v-2.2a2.6 2.6 0 0 1-2-2.6V8.5a2.6 2.6 0 0 1 2.7-2.6z"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            <path
+              d="M12.1 9.4v5.2M9.5 12h5.2"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.3"
+              strokeLinecap="round"
+            />
+          </svg>
+        </button>
+      </div>
     </header>
   );
 };

@@ -3,7 +3,7 @@
   top: 0;
   z-index: 20;
   display: grid;
-  grid-template-columns: 44px 1fr 36px 44px;
+  grid-template-columns: 44px minmax(0, 1fr) auto;
   align-items: center;
   gap: 8px;
   margin-bottom: 16px;
@@ -64,6 +64,13 @@
   color: var(--accent-strong);
 }
 
+.rightActions {
+  justify-self: end;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
 .supportButton {
   width: 36px;
   height: 36px;
@@ -100,5 +107,21 @@
 
   .standalone {
     margin-top: 16px;
+  }
+}
+
+@media (max-width: 420px) {
+  .header {
+    gap: 6px;
+    padding-inline: 10px;
+  }
+
+  .title {
+    padding-inline: 12px;
+    font-size: 14px;
+  }
+
+  .rightActions {
+    gap: 6px;
   }
 }
