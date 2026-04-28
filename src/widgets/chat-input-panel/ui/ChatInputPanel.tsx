@@ -19,6 +19,7 @@ type ChatInputPanelProps = {
 export const ChatInputPanel = ({ onSubmit, disabled = false, isSending = false, hint }: ChatInputPanelProps) => {
   const [pendingImages, setPendingImages] = useState<PendingImage[]>([]);
   const [text, setText] = useState("");
+  const [uploadError, setUploadError] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
   const handleInput = (event: FormEvent<HTMLTextAreaElement>) => {
@@ -40,7 +41,23 @@ export const ChatInputPanel = ({ onSubmit, disabled = false, isSending = false, 
       return;
     }
 
-    const newItems = Array.from(files).map((file) => ({
+    const selectedFiles = Array.from(files);
+    const isHeicFile = (file: File) => {
+      const mime = file.type.toLowerCase();
+      const name = file.name.toLowerCase();
+      return mime === "image/heic" || mime === "image/heif" || name.endsWith(".heic") || name.endsWith(".heif");
+    };
+
+    const supportedFiles = selectedFiles.filter((file) => !isHeicFile(file));
+    const hasUnsupportedHeic = supportedFiles.length !== selectedFiles.length;
+
+    if (hasUnsupportedHeic) {
+      setUploadError("Формат HEIC/HEIF пока не поддерживается. Пожалуйста, сохраните фото как JPG или PNG.");
+    } else {
+      setUploadError(null);
+    }
+
+    const newItems = supportedFiles.map((file) => ({
       id: `${file.name}-${file.lastModified}`,
       file,
     }));
@@ -78,6 +95,7 @@ export const ChatInputPanel = ({ onSubmit, disabled = false, isSending = false, 
     await onSubmit({ text: trimmed, images });
     setText("");
     setPendingImages([]);
+    setUploadError(null);
   };
 
   return (
@@ -146,6 +164,7 @@ export const ChatInputPanel = ({ onSubmit, disabled = false, isSending = false, 
           disabled={disabled || isSending}
         />
         {hint ? <p className={styles.hint}>{hint}</p> : null}
+        {uploadError ? <p className={styles.errorHint}>{uploadError}</p> : null}
       <div className={styles.footer}>
         <button
           type="button"

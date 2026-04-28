@@ -163,6 +163,13 @@
   line-height: 1.35;
 }
 
+.errorHint {
+  margin: 6px 2px 0;
+  color: #b42318;
+  font-size: 12px;
+  line-height: 1.35;
+}
+
 @media (max-width: 520px) {
   .panel {
     border-radius: 18px;
