@@ -10,11 +10,25 @@ import styles from "./ArticlePage.module.css";
 
 export const ArticlePage = () => {
   const { id } = useParams();
-  const { data: article } = useQuery({
+  const { data: article, isPending } = useQuery({
     queryKey: ["knowledge-article", id],
     queryFn: () => knowledgeApi.getArticleById(id as string),
     enabled: Boolean(id),
   });
+
+  if (isPending) {
+    return (
+      <PageContainer>
+        <section className={styles.page}>
+          <AppHeader title="Статья" />
+          <div className={styles.loadingCard} role="status" aria-live="polite">
+            <span className={styles.spinner} aria-hidden="true" />
+            <span className={styles.loadingText}>Загружаем статью...</span>
+          </div>
+        </section>
+      </PageContainer>
+    );
+  }
 
   if (!article) {
     return (
