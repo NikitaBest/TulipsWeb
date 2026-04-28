@@ -137,21 +137,25 @@ export const ChatPage = () => {
                           : styles.messageAssistant
                     }
                   >
-                    {message.imageUrls
-                      .filter((imageUrl) => !failedImageUrls.includes(imageUrl))
-                      .map((imageUrl) => (
-                        <img
-                          key={imageUrl}
-                          className={styles.messageImage}
-                          src={imageUrl}
-                          alt="Вложение сообщения"
-                          loading="lazy"
-                          onClick={() => setPreviewImageUrl(imageUrl)}
-                          onError={() => {
-                            setFailedImageUrls((prev) => (prev.includes(imageUrl) ? prev : [...prev, imageUrl]));
-                          }}
-                        />
-                      ))}
+                    {message.imageUrls.filter((imageUrl) => !failedImageUrls.includes(imageUrl)).length > 0 ? (
+                      <div className={styles.messageImages}>
+                        {message.imageUrls
+                          .filter((imageUrl) => !failedImageUrls.includes(imageUrl))
+                          .map((imageUrl) => (
+                            <img
+                              key={imageUrl}
+                              className={styles.messageImage}
+                              src={imageUrl}
+                              alt="Вложение сообщения"
+                              loading="lazy"
+                              onClick={() => setPreviewImageUrl(imageUrl)}
+                              onError={() => {
+                                setFailedImageUrls((prev) => (prev.includes(imageUrl) ? prev : [...prev, imageUrl]));
+                              }}
+                            />
+                          ))}
+                      </div>
+                    ) : null}
                     {message.text ? (
                       <div
                         className={styles.messageText}
