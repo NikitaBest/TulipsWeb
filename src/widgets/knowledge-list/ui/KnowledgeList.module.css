@@ -3,10 +3,26 @@
   gap: 12px;
 }
 
+.itemLink {
+  display: block;
+  color: inherit;
+  border-radius: 16px;
+}
+
 .item {
   display: grid;
   gap: 10px;
   border-radius: 16px;
+  transition: transform 0.15s ease, box-shadow 0.2s ease;
+}
+
+.itemLink:hover .item {
+  transform: translateY(-1px);
+}
+
+.itemLink:focus-visible {
+  outline: 2px solid rgba(46, 168, 132, 0.55);
+  outline-offset: 2px;
 }
 
 .meta {
