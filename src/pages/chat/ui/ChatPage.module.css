@@ -339,14 +339,20 @@
   right: 8px;
   width: 34px;
   height: 34px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   border: 0;
   border-radius: 50%;
   background: #ffffff;
   color: #0f172a;
-  font-size: 18px;
-  line-height: 1;
   cursor: pointer;
   box-shadow: 0 10px 24px -16px rgba(15, 23, 42, 0.7);
+}
+
+.imagePreviewCloseIcon {
+  width: 18px;
+  height: 18px;
 }
 
 @media (min-width: 900px) {

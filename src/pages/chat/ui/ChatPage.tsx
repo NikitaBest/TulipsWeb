@@ -272,7 +272,15 @@ export const ChatPage = () => {
               aria-label="Закрыть просмотр изображения"
               onClick={() => setPreviewImageUrl(null)}
             >
-              ✕
+              <svg viewBox="0 0 24 24" aria-hidden="true" className={styles.imagePreviewCloseIcon}>
+                <path
+                  d="M7 7l10 10M17 7 7 17"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.2"
+                  strokeLinecap="round"
+                />
+              </svg>
             </button>
             <img className={styles.imagePreview} src={previewImageUrl} alt="Увеличенное изображение" />
           </div>
