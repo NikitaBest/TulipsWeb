@@ -193,7 +193,6 @@
 
 .messageImage {
   width: 100%;
-  aspect-ratio: 4 / 3;
   object-fit: cover;
   border-radius: 10px;
   display: block;
@@ -203,14 +202,44 @@
 .messageImages {
   margin-top: 8px;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
   gap: 8px;
-  width: min(100%, 360px);
+  width: 100%;
+}
+
+.messageImagesSingle {
+  max-width: 260px;
+}
+
+.messageImagesMulti {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  max-width: 300px;
+}
+
+.messageImageSingle {
+  aspect-ratio: 4 / 3;
+  max-height: 190px;
+}
+
+.messageImageMulti {
+  aspect-ratio: 1 / 1;
+  max-height: 140px;
 }
 
 @media (min-width: 900px) {
-  .messageImages {
-    width: min(100%, 420px);
+  .messageImagesSingle {
+    max-width: 320px;
+  }
+
+  .messageImagesMulti {
+    max-width: 360px;
+  }
+
+  .messageImageSingle {
+    max-height: 220px;
+  }
+
+  .messageImageMulti {
+    max-height: 170px;
   }
 }
 

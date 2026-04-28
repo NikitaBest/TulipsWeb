@@ -137,14 +137,27 @@ export const ChatPage = () => {
                           : styles.messageAssistant
                     }
                   >
-                    {message.imageUrls.filter((imageUrl) => !failedImageUrls.includes(imageUrl)).length > 0 ? (
-                      <div className={styles.messageImages}>
-                        {message.imageUrls
-                          .filter((imageUrl) => !failedImageUrls.includes(imageUrl))
-                          .map((imageUrl) => (
+                    {(() => {
+                      const visibleImageUrls = message.imageUrls.filter((imageUrl) => !failedImageUrls.includes(imageUrl));
+                      const hasSingleImage = visibleImageUrls.length === 1;
+                      if (visibleImageUrls.length === 0) {
+                        return null;
+                      }
+
+                      return (
+                        <div
+                          className={[
+                            styles.messageImages,
+                            hasSingleImage ? styles.messageImagesSingle : styles.messageImagesMulti,
+                          ].join(" ")}
+                        >
+                          {visibleImageUrls.map((imageUrl) => (
                             <img
                               key={imageUrl}
-                              className={styles.messageImage}
+                              className={[
+                                styles.messageImage,
+                                hasSingleImage ? styles.messageImageSingle : styles.messageImageMulti,
+                              ].join(" ")}
                               src={imageUrl}
                               alt="Вложение сообщения"
                               loading="lazy"
@@ -154,8 +167,9 @@ export const ChatPage = () => {
                               }}
                             />
                           ))}
-                      </div>
-                    ) : null}
+                        </div>
+                      );
+                    })()}
                     {message.text ? (
                       <div
                         className={styles.messageText}
