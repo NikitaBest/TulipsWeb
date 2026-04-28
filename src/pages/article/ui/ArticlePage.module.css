@@ -38,7 +38,37 @@
   font-size: 15px;
   font-weight: 360;
   line-height: 1.55;
-  white-space: pre-line;
+  white-space: normal;
+}
+
+.content p {
+  margin: 0 0 12px;
+}
+
+.content p:last-child {
+  margin-bottom: 0;
+}
+
+.content h2,
+.content h3,
+.content h4 {
+  margin: 14px 0 8px;
+  color: var(--text);
+  line-height: 1.25;
+}
+
+.content ul,
+.content ol {
+  margin: 8px 0 12px;
+  padding-left: 20px;
+}
+
+.content li {
+  margin: 0 0 6px;
+}
+
+.content li:last-child {
+  margin-bottom: 0;
 }
 
 @media (min-width: 900px) {

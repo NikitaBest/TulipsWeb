@@ -40,6 +40,22 @@ export const AppHeader = ({ title, mode = "back", onMenuClick, inContainer = tru
         {title}
       </Link>
 
+      <a
+        className={styles.supportButton}
+        href="https://t.me/bazhanov_vladimir"
+        target="_blank"
+        rel="noreferrer"
+        aria-label="Написать в поддержку в Telegram"
+        title="Поддержка"
+      >
+        <svg viewBox="0 0 24 24" aria-hidden="true" className={styles.supportIcon}>
+          <path
+            d="M21.3 4.6c.6-.2 1.2.3 1 .9l-3.1 14.6a1 1 0 0 1-1.4.7l-4.8-2.2-2.6 2.4a1 1 0 0 1-1.7-.6l-.2-4.2L18.6 8a.6.6 0 0 0-.7-1L5.1 12l-3.8-1.6a1 1 0 0 1 .1-1.9z"
+            fill="currentColor"
+          />
+        </svg>
+      </a>
+
       <button
         type="button"
         className={classNames(styles.sideButton, styles.newChatButton)}

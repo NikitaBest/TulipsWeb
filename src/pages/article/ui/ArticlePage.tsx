@@ -1,4 +1,5 @@
 import { useParams } from "react-router-dom";
+import DOMPurify from "dompurify";
 import { useQuery } from "@tanstack/react-query";
 import { knowledgeApi } from "@/shared/api/knowledge";
 import { EmptyState } from "@/shared/ui/empty-state";
@@ -31,7 +32,10 @@ export const ArticlePage = () => {
           <span className={styles.category}>{article.category ?? "Статья"}</span>
           <h1 className={styles.title}>{article.title}</h1>
           <p className={styles.description}>{article.description}</p>
-          <p className={styles.content}>{article.content}</p>
+          <div
+            className={styles.content}
+            dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(article.content) }}
+          />
         </Card>
       </section>
     </PageContainer>
