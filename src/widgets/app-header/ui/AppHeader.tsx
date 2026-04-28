@@ -28,11 +28,28 @@ export const AppHeader = ({ title, mode = "back", onMenuClick, inContainer = tru
           aria-label="Открыть историю чатов"
           onClick={onMenuClick}
         >
-          ☰
+          <svg viewBox="0 0 24 24" aria-hidden="true" className={styles.sideIcon}>
+            <path
+              d="M5 7.5h14M5 12h14M5 16.5h14"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.2"
+              strokeLinecap="round"
+            />
+          </svg>
         </button>
       ) : (
         <button type="button" className={styles.sideButton} aria-label="Назад" onClick={() => navigate(-1)}>
-          ←
+          <svg viewBox="0 0 24 24" aria-hidden="true" className={styles.sideIcon}>
+            <path
+              d="M14.8 6.8 9.6 12l5.2 5.2"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.4"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
         </button>
       )}
 

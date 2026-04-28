@@ -220,7 +220,7 @@ export const chatsApi = {
     };
   },
 
-  async getMessages(chatId: string, pageNumber = 1, pageSize = 50): Promise<ChatMessage[]> {
+  async getMessages(chatId: string, pageNumber = 1, pageSize = 1000): Promise<ChatMessage[]> {
     if (!isGuid(chatId)) {
       throw new Error("Invalid chatId format");
     }

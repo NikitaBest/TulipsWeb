@@ -24,14 +24,14 @@
 .sideButton {
   width: 44px;
   height: 44px;
+  flex: 0 0 44px;
   border: 0;
   border-radius: 12px;
   background: var(--surface);
   color: var(--text);
-  font-size: 20px;
-  line-height: 1;
-  display: grid;
-  place-items: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   box-shadow: 0 8px 20px -14px rgba(17, 24, 39, 0.45);
   cursor: pointer;
 }
@@ -66,27 +66,38 @@
 
 .rightActions {
   justify-self: end;
-  display: inline-flex;
+  display: flex;
   align-items: center;
   gap: 8px;
+  flex: 0 0 auto;
+}
+
+.rightActions > * {
+  flex-shrink: 0;
 }
 
 .supportButton {
-  width: 36px;
-  height: 36px;
-  border-radius: 10px;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
   background: rgba(99, 207, 176, 0.18);
   color: #1f7f67;
-  display: grid;
-  place-items: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   box-shadow:
     0 8px 18px -14px rgba(17, 24, 39, 0.45),
     inset 0 0 0 1px rgba(46, 168, 132, 0.28);
 }
 
+.sideIcon {
+  width: 20px;
+  height: 20px;
+}
+
 .supportIcon {
-  width: 18px;
-  height: 18px;
+  width: 20px;
+  height: 20px;
 }
 
 .newChatIcon {

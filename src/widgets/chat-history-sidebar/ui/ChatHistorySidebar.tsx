@@ -109,7 +109,7 @@ export const ChatHistorySidebar = ({ enabled = true, className, mobile = false, 
                       onClick={async () => {
                         await queryClient.fetchQuery({
                           queryKey: ["messages", chat.id],
-                          queryFn: () => chatsApi.getMessages(chat.id, 1, 50),
+                          queryFn: () => chatsApi.getMessages(chat.id, 1, 1000),
                         });
                         await queryClient.fetchQuery({
                           queryKey: ["chat-by-id", chat.id],

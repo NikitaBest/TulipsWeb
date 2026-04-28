@@ -24,7 +24,7 @@ export const ChatPage = () => {
 
   const { data: messages = [] } = useQuery<ChatMessage[]>({
     queryKey: ["messages", selectedChatId],
-    queryFn: () => chatsApi.getMessages(selectedChatId as string, 1, 50),
+    queryFn: () => chatsApi.getMessages(selectedChatId as string, 1, 1000),
     enabled: hasSelectedChat,
     refetchInterval: (query) => {
       const data = query.state.data ?? [];
